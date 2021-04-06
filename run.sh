@@ -28,7 +28,7 @@ if test -n "$ENABLE_ID_SERVER" ; then
   popd
 fi
 
-curl -s "${GENESIS_URL?}" > config/genesis.json
+curl -s "https://raw.githubusercontent.com/ovrclk/net/master/mainnet/genesis.json" > config/genesis.json
 
 cat config.toml | python3 -u ./patch_config_toml.py > config/config.toml
 

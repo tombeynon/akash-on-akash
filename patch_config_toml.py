@@ -32,8 +32,8 @@ timeout = float(os.environ.get('HTTP_TIMEOUT', '30.0'))
 state_sync_enable = int(os.environ.get('STATE_SYNC', '1')) > 0
 pex_enable = int(os.environ.get('PEX', '1')) > 0
 
-seeds_url = os.environ['SEEDS_URL']
-sync_url = os.environ['SYNC_URL']
+seeds_url = 'https://raw.githubusercontent.com/ovrclk/net/master/mainnet/seed-nodes.txt'
+sync_url = 'https://raw.githubusercontent.com/ovrclk/net/master/mainnet/rpc-nodes.txt'
 
 sys.stderr.write("Fetching: %s\n" % (seeds_url,))
 with urllib.request.urlopen(seeds_url, timeout = timeout) as response:
@@ -92,7 +92,7 @@ if state_sync_enable:
   sync_servers_str = ','.join('http://%s' % (x,) for x in sync_servers)
 
   data['statesync'] = {
-    'enable': True,
+    'enable': False,
     'rpc_servers': sync_servers_str,
     'trust_height': trust_height,
     'trust_hash':  trust_hash,
